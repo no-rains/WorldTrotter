@@ -87,8 +87,11 @@ class ConversionViewController:UIViewController,UITextFieldDelegate
                    replacementString string: String)-> Bool
  
     {
-        let existingTextHasDecimalSeparator = textField.text?.range(of:".")
-        let replacementTextHasDecimalSeparator = string.range(of:".")
+        let currentLocal = Locale.current
+        let decimalSeparator = currentLocal.decimalSeparator ?? "."
+        
+        let existingTextHasDecimalSeparator = textField.text?.range(of:decimalSeparator)
+        let replacementTextHasDecimalSeparator = string.range(of: decimalSeparator)
         
         if existingTextHasDecimalSeparator != nil,
             replacementTextHasDecimalSeparator != nil
